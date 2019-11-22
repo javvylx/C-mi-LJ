@@ -1,4 +1,4 @@
-/*
+﻿/*
  * ICT1002 (C Language) Group Project, AY19 Trimester 1.
  *
  * This file implements the behaviour of the chatbot. The main entry point to
@@ -43,6 +43,8 @@
 #include <stdio.h>
 #include <string.h>
 #include "chat1002.h"
+#include <ctype.h>
+#include <stdarg.h>
  
  
 /*
@@ -52,7 +54,7 @@
  */
 const char *chatbot_botname() {
 
-	return "Chatbot";
+	return "HelloMoto";
 	
 }
 
@@ -64,10 +66,44 @@ const char *chatbot_botname() {
  */
 const char *chatbot_username() {
 
-	return "User";
+	return "Siemens";
 	
 }
 
+typedef struct {
+	char* intent;
+	char* responses[3]; //declaring that there will 3 different responses that would be returned//
+
+}replybank;
+
+ replybank knowledgeBank[] = {
+	 //responses for "hi"//
+	 {"hi",
+	 {"hello there!", "it's nice to see you!","Ann yeongg!"}
+	 },
+
+	 //responses for "good morning"//
+	 {"morning",
+	 {"A very good morning to you!","Ohayōgozaimasu senpai!","Zhao an ni hao!"}
+	 },
+
+	 //responses for "I need some motivation"//
+	 {"motivation",
+	 {"Yes sir!, If everything seems under control, you're not going fast enough ",
+	  "Yes sir!, Courage is not the absence of fear, but the triumph over it!",
+	  "Yes sir!,You will survive because the fire inside you will burn brighter than the fire around you!"}
+	 },
+
+	 //responses for "good afternoon"//
+	 {"afternoon",
+	 {"A very good afternoon to you too!","Time for some lunch!","It's time to get working!"}
+	 },
+
+	 //responses for "good night"//
+	 {"nights",
+	 {"Hope you have a good rest!","Good night to you!","Sweet dreams!"}
+	 },
+};
 
 /*
  * Get a response to user input.
@@ -155,9 +191,8 @@ int chatbot_do_exit(int inc, char *inv[], char *response, int n) {
  */
 int chatbot_is_load(const char *intent) {
 	
-	/* to be implemented */
-	
-	return 0;
+	return compare_token(intent, "load") == 0;
+
 	
 }
 
@@ -173,6 +208,8 @@ int chatbot_is_load(const char *intent) {
  */
 int chatbot_do_load(int inc, char *inv[], char *response, int n) {
 	
+	snprintf(response, n, "Loading file now!");
+
 	/* to be implemented */
 	 
 	return 0;
@@ -192,6 +229,7 @@ int chatbot_do_load(int inc, char *inv[], char *response, int n) {
  */
 int chatbot_is_question(const char *intent) {
 	
+	return compare_token(intent, "what") == 0 || compare_token(intent, "where") == 0 || compare_token(intent, "who") == 0;
 	/* to be implemented */
 	
 	return 0;
@@ -214,6 +252,7 @@ int chatbot_is_question(const char *intent) {
  */
 int chatbot_do_question(int inc, char *inv[], char *response, int n) {
 	
+
 	/* to be implemented */
 	 
 	return 0;
@@ -294,7 +333,7 @@ int chatbot_do_save(int inc, char *inv[], char *response, int n) {
 	 
 }
  
- 
+
 /*
  * Determine which an intent is smalltalk.
  *
@@ -307,6 +346,15 @@ int chatbot_do_save(int inc, char *inv[], char *response, int n) {
  *  0, otherwise
  */
 int chatbot_is_smalltalk(const char *intent) {
+	
+	
+	{
+	return compare_token(intent, "hi") == 0 ||
+	compare_token(intent, "morning") == 0 ||
+	compare_token(intent, "motivation") == 0 ||
+	compare_token(intent, "afternoon") == 0 ||
+	compare_token(intent, "nights") == 0;	
+	}	
 	
 	/* to be implemented */
 	
@@ -326,10 +374,18 @@ int chatbot_is_smalltalk(const char *intent) {
  *   1, if the chatbot should stop chatting (e.g. the smalltalk was "goodbye" etc.)
  */
 int chatbot_do_smalltalk(int inc, char *inv[], char *response, int n) {
-	
-	/* to be implemented */
-	
+	char* smalltalkoutput;
+	for (int i =0; i< sizeof (knowledgeBank)/sizeof(knowledgeBank[0]); ++i) {
+
+		if (strcmp(knowledgeBank[i].intent, inv[0]) == 0) {
+			int r = rand() % 3; //random number from 0-2 for a randomized response
+				smalltalkoutput = knowledgeBank[i].responses[r];
+				snprintf(response, n, smalltalkoutput);
+		}
+
+	}
 	return 0;
+
 	
 }
   

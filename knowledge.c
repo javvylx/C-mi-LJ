@@ -7,7 +7,7 @@
  * knowledge_put() inserts a new response to a question.
  * knowledge_read() reads the knowledge base from a file.
  * knowledge_reset() erases all of the knowledge.
- * kowledge_write() saves the knowledge base in a file.
+ * knowledge_write() saves the knowledge base in a file.
  *
  * You may add helper functions as necessary.
  */
