@@ -27,7 +27,13 @@
 #define KB_NOTFOUND -1
 #define KB_INVALID  -2
 #define KB_NOMEM    -3
- 
+
+typedef struct {
+	char* intent;
+	char* responses[3]; //declaring that there will 3 different responses that would be returned//
+
+}replybank;
+
 /* functions defined in main.c */
 int compare_token(const char *token1, const char *token2);
 void prompt_user(char *buf, int n, const char *format, ...);
@@ -47,7 +53,7 @@ int chatbot_do_reset(int inc, char *inv[], char *response, int n);
 int chatbot_is_save(const char *intent);
 int chatbot_do_save(int inc, char *inv[], char *response, int n);
 int chatbot_is_smalltalk(const char *intent);
-int chatbot_do_smalltalk(int inc, char *inv[], char *response, int n);
+int chatbot_do_smalltalk(int inc, char *inv[], char *resonse, int n);
 
 /* functions defined in knowledge.c */
 int knowledge_get(const char *intent, const char *entity, char *response, int n);

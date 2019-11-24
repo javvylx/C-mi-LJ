@@ -11,7 +11,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+
 #include "chat1002.h"
+#include "knowledge.c"
+#include "chatbot.c"
 
 /* word delimiters */
 const char *delimiters = " ?\t\n";

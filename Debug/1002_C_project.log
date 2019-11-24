@@ -1,0 +1,10 @@
+﻿  chatbot.c
+D:\SIT WORK\ICT1002\C_Project\1002_pak\1002_C_project\1002_C_project\chatbot.c(171,7): warning C4101: 'removed': unreferenced local variable
+D:\SIT WORK\ICT1002\C_Project\1002_pak\1002_C_project\1002_C_project\chatbot.c(378,33): warning C4566: character represented by universal-character-name '\u014D' cannot be represented in the current code page (1252)
+  linkedlist_example.c
+D:\SIT WORK\ICT1002\C_Project\1002_pak\1002_C_project\1002_C_project\chatbot.c(414,17): warning C4013: 'rand' undefined; assuming extern returning int
+D:\SIT WORK\ICT1002\C_Project\1002_pak\1002_C_project\1002_C_project\linkedlist_example.c(5,1): warning C4005: '_CRT_SECURE_NO_WARNINGS': macro redefinition
+D:\SIT WORK\ICT1002\C_Project\1002_pak\1002_C_project\1002_C_project\linkedlist_example.c : message : see previous definition of '_CRT_SECURE_NO_WARNINGS'
+  Generating Code...
+D:\SIT WORK\ICT1002\C_Project\1002_pak\1002_C_project\1002_C_project\linkedlist_example.c(26,6): warning C4101: 'temp': unreferenced local variable
+D:\SIT WORK\ICT1002\C_Project\1002_pak\1002_C_project\1002_C_project\linkedlist_example.c(29): error C4700: uninitialized local variable 'bool' used
