@@ -99,11 +99,53 @@ int chatbot_main(int inc, char *inv[], char *response, int n)
 		return chatbot_do_reset(inc, inv, response, n);
 	else if (chatbot_is_save(inv[0]))
 		return chatbot_do_save(inc, inv, response, n);
+	else if (chatbot_is_help(inv[0]))
+		return chatbot_do_help(inc, inv, response, n);
+	else if (chatbot_is_help2(inv[0]))
+		return chatbot_do_help2(inc, inv, response, n);
 	else
 	{
 		snprintf(response, n, "I don't understand \"%s\".", inv[0]);
 		return 0;
 	}
+}
+
+/*
+ * Determine whether an intent is HELP.
+ *
+ * Input:
+ *  intent - the intent
+ *
+ * Returns:
+ *  1, if the intent is "help" or "/help"
+ *  0, otherwise
+ */
+int chatbot_is_help(const char* intent)
+{
+	return compare_token(intent, "help") == 0 || compare_token(intent, "/help") == 0;
+}
+
+int chatbot_is_help2(const char* intent)
+{
+	return compare_token(intent, "help2") == 0 || compare_token(intent, "/help2") == 0;
+}
+
+/*
+ * Perform the HELP intent.
+ *
+ * Returns:
+ *   0 
+ */
+int chatbot_do_help2(int inc, char* inv[], char* response, int n)
+{
+	snprintf(response, n, "\nsave filename.ini      Save the current data in the chatbot into an .ini file.\nreset                  Reset the chatbot to its original state.\nexit                   Exit the program.");
+	return 0;
+}
+
+int chatbot_do_help(int inc, char* inv[], char* response, int n)
+{
+	snprintf(response, n, "\nhelp                   Show this page. help2 for next page.\nload filename          load a .ini file into the chatbot.\nredefine question      Change the data stored in the chatbot for question provided.\nweather(?)             Get the weather.");
+	return 0;
 }
 
 /*
